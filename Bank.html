@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
+    <style>
+        body {
+            background-color: #E6E6FA; 
+        }
+        button{
+            background-color: #FFD700;
+            color: #2C1654 ;
+        }
+        p{
+         color: #FF007F;   
+        }
+    
+    </style>
+</head>
+<body>
+   <div id="container">
+    <form id="bankForm">
+        <label for="transaction">transaction</label>
+        <input
+        type="number"
+        id="transaction" required
+        minlength="100"
+        maxlength="6000"
+        placeholder="Enter Your Amount"
+        >
+        <br>
+
+        <label for="EventName">Purpose Of Debit</label>
+        <select id="Debit" required>
+            <option value="gaining">Gaining</option>
+            <option value="spending">Spending</option>
+            <option value="receiving">Receiving</option>
+            <option value="Paying">Paying</option>
+        </select>
+        <br>
+        
+        <label for="EventName">Source Of Credit</label>
+        <select id="credit" required>
+            <option value="gaining">Earning</option>
+            <option value="spending">Funding</option>
+            <option value="receiving">Lending</option>
+            <option value="Paying">Owing</option>
+        </select>
+
+  </div>
+  <button class="credit">Credit</button>
+  <p>Or</p>
+<button class="debit">Debit</button>
+<p>Your Walllet:900rs</p>
+</body>
+</html>
