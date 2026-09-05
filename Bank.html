@@ -12,11 +12,11 @@
             background-color: #E6E6FA; 
         }
         button{
-            background-color: #FFD700;
-            color: #2C1654 ;
+            background-color: #e4a0f7;
+            color: #d21404 ;
         }
         p{
-         color: #FF007F;   
+         color: #79baec;
         }
     
     </style>
@@ -36,19 +36,19 @@
 
         <label for="EventName">Purpose Of Debit</label>
         <select id="Debit" required>
-            <option value="gaining">Gaining</option>
-            <option value="spending">Spending</option>
-            <option value="receiving">Receiving</option>
-            <option value="Paying">Paying</option>
+            <option value="gaining" style="color: darkred;">Gaining</option>
+            <option value="spending" style="color: hotpink;">Spending</option>
+            <option value="receiving" style="color: darkmagenta;">Receiving</option>
+            <option value="Paying" style="color: darkorchid;">Paying</option>
         </select>
         <br>
         
         <label for="EventName">Source Of Credit</label>
         <select id="credit" required>
-            <option value="gaining">Earning</option>
-            <option value="spending">Funding</option>
-            <option value="receiving">Lending</option>
-            <option value="Paying">Owing</option>
+            <option value="earning" style="color: dodgerblue;">Earning</option>
+            <option value="funding" style="color: darkgreen;">Funding</option>
+            <option value="lending" style="color: darkgoldenrod;">Lending</option>
+            <option value="owing" style="color: gold;">Owing</option>
         </select>
 
   </div>
@@ -56,5 +56,6 @@
   <p>Or</p>
 <button class="debit">Debit</button>
 <p>Your Walllet:900rs</p>
+<p id="note">Terms And Conditions Apply</p>
 </body>
 </html>
