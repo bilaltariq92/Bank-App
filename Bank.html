@@ -1,61 +1,254 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>Zainabs Bank App</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank App</title>
+
     <link rel="stylesheet" type="text/css" href="style.css">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
+
     <style>
         body {
-            background-color: #E6E6FA; 
+            background-color: #E6E6FA;
+            font-family: Arial, sans-serif;
+            text-align: center;
         }
-        button{
+
+        #container {
+            margin: 30px auto;
+            padding: 20px;
+            width: 400px;
+            background-color: white;
+            border-radius: 15px;
+        }
+
+        input,
+        select {
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+        }
+
+        button {
             background-color: #e4a0f7;
-            color: #d21404 ;
+            color: #d21404;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
         }
-        p{
-         color: #79baec;
+
+        button:hover {
+            background-color: #d580f0;
         }
-    
+
+        p {
+            color: #79baec;
+        }
+
+        #balance-box {
+            background-color: #f3e5f5;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 15px;
+        }
+
+        #balance-label {
+            color: darkgreen;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #balance {
+            color: #d21404;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        #note {
+            color: darkred;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body>
-   <div id="container">
-    <form id="bankForm">
-        <label for="transaction">transaction</label>
-        <input
-        type="number"
-        id="transaction" required
-        minlength="100"
-        maxlength="6000"
-        placeholder="Enter Your Amount"
-        >
-        <br>
 
-        <label for="EventName">Purpose Of Debit</label>
-        <select id="Debit" required>
-            <option value="gaining" style="color: darkred;">Gaining</option>
-            <option value="spending" style="color: hotpink;">Spending</option>
-            <option value="receiving" style="color: darkmagenta;">Receiving</option>
-            <option value="Paying" style="color: darkorchid;">Paying</option>
-        </select>
-        <br>
-        
-        <label for="EventName">Source Of Credit</label>
-        <select id="credit" required>
-            <option value="earning" style="color: dodgerblue;">Earning</option>
-            <option value="funding" style="color: darkgreen;">Funding</option>
-            <option value="lending" style="color: darkgoldenrod;">Lending</option>
-            <option value="owing" style="color: gold;">Owing</option>
-        </select>
+    <div id="container">
 
-  </div>
-  <button class="credit">Credit</button>
-  <p>Or</p>
-<button class="debit">Debit</button>
-<p>Your Walllet:900rs</p>
-<p id="note">Terms And Conditions Apply</p>
+        <form id="bankForm">
+
+            <h1>Zainabs Bank</h1>
+
+            <label for="transaction">Transaction Amount</label>
+            <br>
+
+            <input type="number" id="transaction" min="1" max="6000" required placeholder="Enter Your Amount">
+
+            <br>
+
+            <label for="Debit">Purpose Of Debit</label>
+            <br>
+
+            <select id="Debit">
+                <option value="gaining">Gaining</option>
+                <option value="spending">Spending</option>
+                <option value="receiving">Receiving</option>
+                <option value="paying">Paying</option>
+            </select>
+
+            <br>
+
+            <label for="credit">Source Of Credit</label>
+            <br>
+
+            <select id="credit">
+                <option value="earning">Earning</option>
+                <option value="funding">Funding</option>
+                <option value="lending">Lending</option>
+                <option value="owing">Owing</option>
+            </select>
+
+            <br>
+
+            <button type="button" id="credit-btn">
+                Credit
+            </button>
+
+            <p>Or</p>
+
+            <button type="button" id="debit-btn">
+                Debit
+            </button>
+
+        </form>
+
+        <p id="note">You Need Money</p>
+
+        <div id="balance-box">
+
+            <p id="balance-label">Available Balance</p>
+
+            <p id="balance">1000</p>
+
+            <p>Terms And Conditions Apply</p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Get the current balance
+        function getBalance() {
+            return Number(document.getElementById("balance").innerText);
+        }
+
+
+        // Display the new balance
+        function printBalance(num) {
+            document.getElementById("balance").innerText = num;
+        }
+
+
+        // Get the amount entered by the user
+        function getAmount() {
+            return Number(document.getElementById("transaction").value);
+        }
+
+
+        // Show a message
+        function showMessage(text) {
+            document.getElementById("note").innerText = text;
+        }
+
+
+        // Clear the amount input
+        function clearAmount() {
+            document.getElementById("transaction").value = "";
+        }
+
+
+        // Check whether the amount is valid
+        function isAmountValid() {
+
+            var typed = document.getElementById("transaction").value;
+
+            if (typed == "") {
+
+                showMessage("Please Enter An Amount!");
+
+                return false;
+
+            } else if (Number(typed) <= 0) {
+
+                showMessage("Amount Must Be More Than 0!");
+
+                return false;
+            }
+
+            return true;
+        }
+
+
+        // CREDIT BUTTON
+        document.getElementById("credit-btn").addEventListener("click", function () {
+
+            if (isAmountValid() == false) {
+                return;
+            }
+
+            var amount = getAmount();
+
+            var newBalance = getBalance() + amount;
+
+            printBalance(newBalance);
+
+            showMessage("Credited " + amount + " Successfully.");
+
+            clearAmount();
+
+        });
+
+
+        // DEBIT BUTTON
+        document.getElementById("debit-btn").addEventListener("click", function () {
+
+            if (isAmountValid() == false) {
+                return;
+            }
+
+            var amount = getAmount();
+
+            if (amount > getBalance()) {
+
+                showMessage("Not Enough Balance");
+
+                return;
+            }
+
+            var newBalance = getBalance() - amount;
+
+            printBalance(newBalance);
+
+            showMessage("Debited " + amount + " Successfully.");
+
+            clearAmount();
+
+        });
+
+    </script>
+
 </body>
+
 </html>
+```
